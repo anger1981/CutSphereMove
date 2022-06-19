@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Quellcodedateien">
+      <UniqueIdentifier>{8a5e1c44-fabb-4fd7-a2c0-780ba78b7d5a}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Header-Dateien">
+      <UniqueIdentifier>{b5f6c73a-9aa7-4079-bd30-a8932688d0fc}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+    <Filter Include="Ressourcendateien">
+      <UniqueIdentifier>{0a692cc0-7fb2-4d89-b43d-2f463108e594}</UniqueIdentifier>
+      <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CreateSkin.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="cutSphereMove.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="mwArcFunction.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="mwException.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="mwIdxRangeException.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="myPointCloud.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="myIntersector.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="mySphere.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CreateSkin.hpp">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="mwArcFunction.hpp">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="mwDiscreteFunction.hpp">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="mwException.hpp">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="mwIdxRangeException.hpp">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="mwTPoint3d.hpp">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="myPointCloud.hpp">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="myIntersector.hpp">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="mySphere.hpp">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
