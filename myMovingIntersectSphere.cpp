@@ -1,6 +1,6 @@
 
 #include "myMovingIntersectSphere.hpp"
-
+//#############################################################################
 myMovingIntersectSphere::myMovingIntersectSphere(myPointCloud * APointCloud, const double AsphereRad, mwDiscreteFunction * Afunc, const double AdeltaT)
 {
 	FPointCloud = APointCloud;
@@ -8,19 +8,15 @@ myMovingIntersectSphere::myMovingIntersectSphere(myPointCloud * APointCloud, con
 	Ffunc       = Afunc;
 	FdeltaT     = AdeltaT;
 }
-
+//#############################################################################
 myMovingIntersectSphere::~myMovingIntersectSphere()
 {
 }
-
+//#############################################################################
 void myMovingIntersectSphere::MovementIntersectSphere()
 {	
 	// Parameter t to calculate coord moving sphere
 	double t = Ffunc->GetBeginParameter();
-
-	// Radius of moving sphere plus delta, this need to separate top layer
-	//double FSpherePlusSqrt3Delta = FsphereRad + FPointCloud->GetDelta() * 0.99; // *std::sqrt(3); this member must be variable. I think the answer can be given by number theory
-	                                                                     // if I had more time to solve this problem, I think I would find a better solution
 
 	// 3D coord of center moving sphere
 	point3d  CenterSphere;
@@ -31,7 +27,7 @@ void myMovingIntersectSphere::MovementIntersectSphere()
 	{
 		CenterSphere = Ffunc->Evaluate(t); //calculate coord of sphere center to new value of parameter t
 
-		Sphere->SetCenterSphere(CenterSphere);
+		Sphere->SetCenterSphere(CenterSphere); //Setting new coordinates for the center of the sphere, SubCloud is automatically recalculated in this method
 
 		for (int i = Sphere->GetStartPoint().i; i < Sphere->GetEndtPoint().i; i++)
 		{
@@ -39,10 +35,9 @@ void myMovingIntersectSphere::MovementIntersectSphere()
 			{
 				for (int k = Sphere->GetStartPoint().k; k < Sphere->GetEndtPoint().k; k++)
 				{
-					if (!FPointCloud->GetCloud()[i][j][k].deleted) //calculate no need if point already deleted
+					if (!FPointCloud->GetCloud()[i][j][k].deleted) //calculate no need if point already mark as deleted
 					{
 						Sphere->CalcIntersectSphereToPoint(FPointCloud->GetCloud()[i][j][k], k >= FPointCloud->GetCntPointZ() - 1);
-
 					}
 				}
 			}
@@ -51,11 +46,6 @@ void myMovingIntersectSphere::MovementIntersectSphere()
 		t += FdeltaT; //increase parameter t
 	}
 
-	delete Sphere;
-	
+	delete Sphere;	
 }
-
-//void myIntersector::CalcParamSubCloudNearSphere(point3d ACenterSphere)
-//{
-//}
 

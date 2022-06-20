@@ -54,7 +54,6 @@ myPointCloud::myPointCloud(const point3d & AReferencePoint, int ACntPointX, int 
 
 myPointCloud::~myPointCloud()
 {
-
 	for (int i = 0; i < FCntPointX; i++)
 	{
 		for (int j = 0; j < FCntPointY; j++)
@@ -64,7 +63,6 @@ myPointCloud::~myPointCloud()
 		delete[] FCloud[i];
 	}
 	delete FCloud;
-
 }
 
 void myPointCloud::PrintCloudToFile(const std::string AFilename)

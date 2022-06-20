@@ -1,16 +1,23 @@
 #include "myParamsSphereAndSubCloudNear.hpp"
 
+//#############################################################################
 myParamsSphereAndSubCloudNear::myParamsSphereAndSubCloudNear(const double AsphereRad, const double Adelta)
 {
 	Fdelta     = Adelta;
 	FSphereRadius = AsphereRad;
     Fdelta_radius = floor(FSphereRadius / Fdelta) + 1;
+
+	FSphereRadiusPlusDelta = FSphereRadius + Fdelta * 0.99;
+	FCenterSphere = { 0., 0., 0. };
+	FCenterSphereOld = { 0., 0., 0. };
 }
 
+//#############################################################################
 myParamsSphereAndSubCloudNear::~myParamsSphereAndSubCloudNear()
 {
 }
 
+//#############################################################################
 void myParamsSphereAndSubCloudNear::RecalcSubCloud(point3d ACenterSphere, point3d ACenterSphereOld, double AModCenterSphereOld)
 {	
 
