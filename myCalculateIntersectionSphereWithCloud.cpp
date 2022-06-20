@@ -1,18 +1,19 @@
-#include "mySphere.hpp"
+#include "myCalculateIntersectionSphereWithCloud.hpp"
 
-mySphere::mySphere(double ASphereRadius, double  ASpherePlusSqrt3Delta)
+myCalculateIntersectionSphereWithCloud::myCalculateIntersectionSphereWithCloud(double ASphereRadius, double  ADelta):
+	myParamsSphereAndSubCloudNear(ASphereRadius, ADelta)
 {
 	FSphereRadius         = ASphereRadius;
-	FSpherePlusSqrt3Delta = ASpherePlusSqrt3Delta;
+	FSpherePlusSqrt3Delta = FSphereRadius + ADelta * 0.99;
 	FCenterSphere         = { 0., 0., 0. };
-	FCenterSphereOld      = { 0., 0., 0. };
+	FCenterSphereOld      = { 0., 0., 0. };	
 }
 
-mySphere::~mySphere()
+myCalculateIntersectionSphereWithCloud::~myCalculateIntersectionSphereWithCloud()
 {
 }
 
-void mySphere::CalcIntersectSphereToPoint(point3d & APoint, bool ZTopLayer)
+void myCalculateIntersectionSphereWithCloud::CalcIntersectSphereToPoint(point3d & APoint, bool ZTopLayer)
 {
 	//Vector from center of moving sphere to current point from cloud
 	vector3d FromCentrToPoint;
@@ -36,13 +37,13 @@ void mySphere::CalcIntersectSphereToPoint(point3d & APoint, bool ZTopLayer)
 
 	}
 
-	if (!APoint.deleted && ~FCenterSphereOld > 0) //if we stay on the second or higher step
+	if (!APoint.deleted && FModCenterSphereOld > 0) //if we stay on the second or higher step
 	{
 		CalcIntersectSphereTraceToPoint(APoint, FromCentrToPoint, ModFromCentrToPoint, ZTopLayer);
 	}
 }
 
-void mySphere::CalcIntersectSphereTraceToPoint(point3d & APoint, vector3d & AFromCentrToPoint, double AModFromCentrToPoint, bool ZTopLayer)
+void myCalculateIntersectionSphereWithCloud::CalcIntersectSphereTraceToPoint(point3d & APoint, vector3d & AFromCentrToPoint, double AModFromCentrToPoint, bool ZTopLayer)
 {
 	////Vector from old center sphere to new centre sphere
 	//vector3d FromOldCentrToCentr = FCenterSphere - FCenterSphereOld;

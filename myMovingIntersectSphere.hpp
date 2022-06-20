@@ -10,10 +10,9 @@
 *               (C) 2022 by Home                                              *
 ******************************************************************************/
 
-#include "myPointCloud.hpp"
-#include "mwDiscreteFunction.hpp"
+#include "myCalculateIntersectionSphereWithCloud.hpp"
 
-class myIntersector
+class myMovingIntersectSphere
 {
 private:
 
@@ -21,17 +20,18 @@ private:
 	typedef mwDiscreteFunction::point3d vector3d;
 
 	myPointCloud       * FPointCloud;
-	double               FsphereRad;
+	double               FSphereRadius;
 	mwDiscreteFunction * Ffunc;
 	double               FdeltaT;
 
 public:
-	myIntersector(myPointCloud * APointCloud, const double AsphereRad, mwDiscreteFunction * Afunc, const double AdeltaT);
+	myMovingIntersectSphere(myPointCloud * APointCloud, const double ASphereRadius, mwDiscreteFunction * Afunc, const double AdeltaT);
 
 	//!Destructor
-	~myIntersector();
+	~myMovingIntersectSphere();
 
 	//here I am calculating the intersection of a sphere with a point cloud
-	void CutIntersect();
+	void MovementIntersectSphere();
+
 };
 

@@ -1,33 +1,31 @@
 
-#include "myIntersector.hpp"
-#include "mySphere.hpp"
+#include "myMovingIntersectSphere.hpp"
 
-myIntersector::myIntersector(myPointCloud * APointCloud, const double AsphereRad, mwDiscreteFunction * Afunc, const double AdeltaT)
+myMovingIntersectSphere::myMovingIntersectSphere(myPointCloud * APointCloud, const double AsphereRad, mwDiscreteFunction * Afunc, const double AdeltaT)
 {
 	FPointCloud = APointCloud;
-	FsphereRad  = AsphereRad;
+	FSphereRadius  = AsphereRad;
 	Ffunc       = Afunc;
 	FdeltaT     = AdeltaT;
-
 }
 
-myIntersector::~myIntersector()
+myMovingIntersectSphere::~myMovingIntersectSphere()
 {
 }
 
-void myIntersector::CutIntersect()
+void myMovingIntersectSphere::MovementIntersectSphere()
 {	
 	// Parameter t to calculate coord moving sphere
 	double t = Ffunc->GetBeginParameter();
 
 	// Radius of moving sphere plus delta, this need to separate top layer
-	double FSpherePlusSqrt3Delta = FsphereRad + FPointCloud->GetDelta() * 0.99; // *std::sqrt(3); this member must be variable. I think the answer can be given by number theory
+	//double FSpherePlusSqrt3Delta = FsphereRad + FPointCloud->GetDelta() * 0.99; // *std::sqrt(3); this member must be variable. I think the answer can be given by number theory
 	                                                                     // if I had more time to solve this problem, I think I would find a better solution
 
 	// 3D coord of center moving sphere
 	point3d  CenterSphere;
 
-	mySphere * Sphere = new mySphere(FsphereRad, FSpherePlusSqrt3Delta);
+	myCalculateIntersectionSphereWithCloud * Sphere = new myCalculateIntersectionSphereWithCloud(FSphereRadius, FPointCloud->GetDelta());
 
 	while (t <= Ffunc->GetEndParameter()) // repeat calculation while t less or equal EndParameter
 	{
@@ -35,11 +33,11 @@ void myIntersector::CutIntersect()
 
 		Sphere->SetCenterSphere(CenterSphere);
 
-		for (int i = 0; i < FPointCloud->GetCntPointX(); i++)
+		for (int i = Sphere->GetStartPoint().i; i < Sphere->GetEndtPoint().i; i++)
 		{
-			for (int j = 0; j < FPointCloud->GetCntPointY(); j++)
+			for (int j = Sphere->GetStartPoint().j; j < Sphere->GetEndtPoint().j; j++)
 			{
-				for (int k = 0; k < FPointCloud->GetCntPointZ(); k++)
+				for (int k = Sphere->GetStartPoint().k; k < Sphere->GetEndtPoint().k; k++)
 				{
 					if (!FPointCloud->GetCloud()[i][j][k].deleted) //calculate no need if point already deleted
 					{
@@ -56,3 +54,8 @@ void myIntersector::CutIntersect()
 	delete Sphere;
 	
 }
+
+//void myIntersector::CalcParamSubCloudNearSphere(point3d ACenterSphere)
+//{
+//}
+

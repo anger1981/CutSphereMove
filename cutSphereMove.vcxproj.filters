@@ -33,10 +33,13 @@
     <ClCompile Include="myPointCloud.cpp">
       <Filter>Quellcodedateien</Filter>
     </ClCompile>
-    <ClCompile Include="myIntersector.cpp">
+    <ClCompile Include="myMovingIntersectSphere.cpp">
       <Filter>Quellcodedateien</Filter>
     </ClCompile>
-    <ClCompile Include="mySphere.cpp">
+    <ClCompile Include="myCalculateIntersectionSphereWithCloud.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="myParamsSphereAndSubCloudNear.cpp">
       <Filter>Quellcodedateien</Filter>
     </ClCompile>
   </ItemGroup>
@@ -62,10 +65,13 @@
     <ClInclude Include="myPointCloud.hpp">
       <Filter>Header-Dateien</Filter>
     </ClInclude>
-    <ClInclude Include="myIntersector.hpp">
+    <ClInclude Include="myMovingIntersectSphere.hpp">
       <Filter>Header-Dateien</Filter>
     </ClInclude>
-    <ClInclude Include="mySphere.hpp">
+    <ClInclude Include="myCalculateIntersectionSphereWithCloud.hpp">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="myParamsSphereAndSubCloudNear.hpp">
       <Filter>Header-Dateien</Filter>
     </ClInclude>
   </ItemGroup>

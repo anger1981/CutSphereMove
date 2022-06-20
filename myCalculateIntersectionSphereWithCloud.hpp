@@ -1,5 +1,5 @@
 /******************************************************************************
-*               File: mySphere.hpp                                            *
+*               File: myCalculateIntersectionSphereWithCloud.hpp              *
 *******************************************************************************
 *               Description:                                                  *
 * This class make calculate intersect sphere in current position              *
@@ -11,23 +11,23 @@
 *               (C) 2022 by Home                                              *
 ******************************************************************************/
 
-#ifndef __mySphere_hpp__
-#define __mySphere_hpp__
+#ifndef __myCalculateIntersectionSphereWithCloud_hpp__
+#define __myCalculateIntersectionSphereWithCloud_hpp__
 #endif
 
 #include "mwTPoint3d.hpp"
-#include "mwDiscreteFunction.hpp"
+#include "myParamsSphereAndSubCloudNear.hpp"
 
-class mySphere
+class myCalculateIntersectionSphereWithCloud : public myParamsSphereAndSubCloudNear
 {
 private:
-	typedef mwDiscreteFunction::point3d point3d;
 	typedef mwDiscreteFunction::point3d vector3d;
 
 	double  FSphereRadius;
 	double  FSpherePlusSqrt3Delta;
 	point3d FCenterSphere;
 	point3d FCenterSphereOld;
+	double  FModCenterSphereOld;
 
 	//Vector from old center sphere to new centre sphere
 	vector3d FromOldCentrToCentr;
@@ -35,23 +35,23 @@ private:
 	//Module of Vector FromCentrToPoint
 	double ModFromOldCentrToCentr;
 
+	myParamsSphereAndSubCloudNear * FSubCloudNearSphere;
+
 public:
 
-	mySphere(double ASphereRadius, double  ASpherePlusSqrt3Delta);
+	myCalculateIntersectionSphereWithCloud(double ASphereRadius, double ASpherePlusSqrt3Delta);
 
-	~mySphere();
+	~myCalculateIntersectionSphereWithCloud();
 
-	void SetCenterSphere(point3d ACenterSphere)
+	//Set new value of center and automaticly recalculate subcloud near to make calculation faster
+	inline void SetCenterSphere(point3d ACenterSphere)
 	{
 		FCenterSphereOld = FCenterSphere;
+		FModCenterSphereOld = ~FCenterSphereOld;
 		FCenterSphere = ACenterSphere;
 		FromOldCentrToCentr = FCenterSphere - FCenterSphereOld;
 		ModFromOldCentrToCentr = ~FromOldCentrToCentr;
-	}
-
-	void SetCenterSphereOld(point3d ACenterSphereOld)
-	{
-		FCenterSphereOld = ACenterSphereOld;
+		RecalcSubCloud(FCenterSphere, FCenterSphereOld, FModCenterSphereOld);
 	}
 
 	//metod calculated intersect sphere with cloud

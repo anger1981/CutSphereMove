@@ -1,6 +1,5 @@
 #include "CreateSkin.hpp"
-//#include "myPointCloud.hpp"
-#include "myIntersector.hpp"
+#include "myMovingIntersectSphere.hpp"
 
 void CreateSkin( const cadcam::mwTPoint3d<double> refPoint, 
 				const unsigned long nx, const unsigned long ny, 
@@ -11,15 +10,17 @@ void CreateSkin( const cadcam::mwTPoint3d<double> refPoint,
 	//Create Point Cloud
 	myPointCloud * PointCloud = new myPointCloud(refPoint, nx, ny, nz, delta);
 
-	//Create Intersector
-	myIntersector * Intersector = new myIntersector(PointCloud, sphereRad, &func, deltaT);
+	//Create MovingIntersectSphere
+	myMovingIntersectSphere * MovingIntersectSphere = new myMovingIntersectSphere(PointCloud, sphereRad, &func, deltaT);
 
-	//Calc
-	Intersector->CutIntersect();
+	//Ñalculation of the movement of the sphere and the intersection of the sphere with the cloud
+	MovingIntersectSphere->MovementIntersectSphere();
 
+	//Writing information about the obtained surface to the previously specified file
 	PointCloud->PrintCloudToFile(skinFileName);
 
+	//Clearing the Heap
 	delete PointCloud;
-	delete Intersector;
+	delete MovingIntersectSphere;
 
 }

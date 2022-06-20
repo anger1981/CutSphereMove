@@ -133,7 +133,7 @@
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MaxSpeed</Optimization>
     </ClCompile>
-    <ClCompile Include="myIntersector.cpp" />
+    <ClCompile Include="myMovingIntersectSphere.cpp" />
     <ClCompile Include="mwArcFunction.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
@@ -150,18 +150,20 @@
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MaxSpeed</Optimization>
     </ClCompile>
     <ClCompile Include="myPointCloud.cpp" />
-    <ClCompile Include="mySphere.cpp" />
+    <ClCompile Include="myCalculateIntersectionSphereWithCloud.cpp" />
+    <ClCompile Include="myParamsSphereAndSubCloudNear.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CreateSkin.hpp" />
-    <ClInclude Include="myIntersector.hpp" />
+    <ClInclude Include="myMovingIntersectSphere.hpp" />
     <ClInclude Include="mwArcFunction.hpp" />
     <ClInclude Include="mwDiscreteFunction.hpp" />
     <ClInclude Include="mwException.hpp" />
     <ClInclude Include="mwIdxRangeException.hpp" />
     <ClInclude Include="mwTPoint3d.hpp" />
     <ClInclude Include="myPointCloud.hpp" />
-    <ClInclude Include="mySphere.hpp" />
+    <ClInclude Include="myCalculateIntersectionSphereWithCloud.hpp" />
+    <ClInclude Include="myParamsSphereAndSubCloudNear.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
