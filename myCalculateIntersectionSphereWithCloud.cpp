@@ -46,7 +46,7 @@ void myCalculateIntersectionSphereWithCloud::CalcIntersectSphereTraceToPoint(poi
 	// give angle between FromCentrToPoint and FromOldCentrToCentr
 	double cos = (AFromCentrToPoint * GetFromOldCentrToCentr()) / (GetModFromOldCentrToCentr() * AModFromCentrToPoint);
 
-	if ( cos <= 0.5 && AModFromCentrToPoint <= GetModFromOldCentrToCentr())
+	if ( cos <= 0. && AModFromCentrToPoint <= GetModFromOldCentrToCentr())
 	{
 		if (DistancePointTrace < GetSphereRadius()) //if Module less then sphere radius then point inside sphere and point must be deleted
 		{
