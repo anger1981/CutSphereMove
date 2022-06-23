@@ -28,7 +28,7 @@ public:
 	myMovingIntersectSphere(myPointCloud * APointCloud, const double ASphereRadius, mwDiscreteFunction * Afunc, const double AdeltaT);
 
 	//!Destructor
-	~myMovingIntersectSphere();
+	virtual ~myMovingIntersectSphere();
 
 	//here I am calculating the intersection of a sphere with a point cloud
 	void MovementIntersectSphere();

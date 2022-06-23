@@ -87,6 +87,8 @@
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention />
       <TargetMachine>MachineX86</TargetMachine>
+      <HeapReserveSize>
+      </HeapReserveSize>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -133,6 +135,7 @@
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MaxSpeed</Optimization>
     </ClCompile>
+    <ClCompile Include="myRepositoryPointCloud.cpp" />
     <ClCompile Include="myMovingIntersectSphere.cpp" />
     <ClCompile Include="mwArcFunction.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
@@ -155,6 +158,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CreateSkin.hpp" />
+    <ClInclude Include="myRepositoryPointCloud.hpp" />
     <ClInclude Include="myMovingIntersectSphere.hpp" />
     <ClInclude Include="mwArcFunction.hpp" />
     <ClInclude Include="mwDiscreteFunction.hpp" />
@@ -165,7 +169,21 @@
     <ClInclude Include="myCalculateIntersectionSphereWithCloud.hpp" />
     <ClInclude Include="myParamsSphereAndSubCloudNear.hpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="packages\boost.1.79.0\build\boost.targets" Condition="Exists('packages\boost.1.79.0\build\boost.targets')" />
+    <Import Project="packages\boost_thread-vc141.1.79.0\build\boost_thread-vc141.targets" Condition="Exists('packages\boost_thread-vc141.1.79.0\build\boost_thread-vc141.targets')" />
+    <Import Project="packages\boost_chrono-vc141.1.79.0\build\boost_chrono-vc141.targets" Condition="Exists('packages\boost_chrono-vc141.1.79.0\build\boost_chrono-vc141.targets')" />
   </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Данный проект ссылается на пакеты NuGet, отсутствующие на этом компьютере. Используйте восстановление пакетов NuGet, чтобы скачать их.  Дополнительную информацию см. по адресу: http://go.microsoft.com/fwlink/?LinkID=322105. Отсутствует следующий файл: {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\boost.1.79.0\build\boost.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\boost.1.79.0\build\boost.targets'))" />
+    <Error Condition="!Exists('packages\boost_thread-vc141.1.79.0\build\boost_thread-vc141.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\boost_thread-vc141.1.79.0\build\boost_thread-vc141.targets'))" />
+    <Error Condition="!Exists('packages\boost_chrono-vc141.1.79.0\build\boost_chrono-vc141.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\boost_chrono-vc141.1.79.0\build\boost_chrono-vc141.targets'))" />
+  </Target>
 </Project>

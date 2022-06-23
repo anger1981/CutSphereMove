@@ -13,13 +13,6 @@
 
 #include "myPointCloud.hpp"
 
-//Struct to store offset subcloud
-typedef struct {
-	int i;
-	int j;
-	int k;
-} myPointCoord;
-
 class myParamsSphereAndSubCloudNear
 {
 private:
@@ -56,7 +49,8 @@ private:
 public:
 	myParamsSphereAndSubCloudNear(const double Adelta, const double AsphereRad);
 
-	~myParamsSphereAndSubCloudNear();
+	//!Destructor
+	virtual ~myParamsSphereAndSubCloudNear();
 
 	//Ñalculating the coordinates of the area near the sphere to speed up the calculation of the intersection
 	void myParamsSphereAndSubCloudNear::RecalcSubCloud(point3d ACenterSphere, point3d ACenterSphereOld, double AModCenterSphereOld);
@@ -64,59 +58,69 @@ public:
 	//Set new value of center and automaticly recalculate subcloud near to make calculation faster
 	inline void SetCenterSphere(point3d ACenterSphere)
 	{		
-		FCenterSphereOld = FCenterSphere;                                   //Save old value of center		
-		FModCenterSphereOld = ~FCenterSphereOld;                            //Calc module of center		
-		FCenterSphere = ACenterSphere;                                      //Set
-		FromOldCentrToCentr = FCenterSphere - FCenterSphereOld;             //Vector from old center to new center of sphere
-		ModFromOldCentrToCentr = ~FromOldCentrToCentr;                      //Calculation of module
+		FCenterSphereOld       = FCenterSphere;                                //Save old value of center		
+		FModCenterSphereOld    = ~FCenterSphereOld;                            //Calc module of center		
+		FCenterSphere          = ACenterSphere;                                //Set
+		FromOldCentrToCentr    = FCenterSphere - FCenterSphereOld;             //Vector from old center to new center of sphere
+		ModFromOldCentrToCentr = ~FromOldCentrToCentr;                         //Calculation of module
 		RecalcSubCloud(FCenterSphere, FCenterSphereOld, FModCenterSphereOld);  //Recalc SubCloud near sphere
 	}
 
+	//#############################################################################
 	inline myPointCoord GetStartPoint() const
 	{
 		return FStartPoint;
 	}
 
-	inline myPointCoord GetEndtPoint() const
+	//#############################################################################
+	inline myPointCoord GetEndPoint() const
 	{
 		return FEndPoint;
 	}
 
+	//#############################################################################
 	inline double GetSphereRadius() const
 	{
 		return FSphereRadius;
 	}
 
+	//#############################################################################
 	inline double Getdelta() const
 	{
 		return Fdelta;
 	}
 
+	//#############################################################################
 	inline double GetSphereRadiusPlusDelta() const
 	{
 		return FSphereRadiusPlusDelta;
 	}
 
+	//#############################################################################
 	inline point3d GetCenterSphere() const
 	{
 		return FCenterSphere;
 	}
 
+	//#############################################################################
 	inline point3d GetCenterSphereOld() const
 	{
 		return FCenterSphereOld;
 	}
 
+	//#############################################################################
 	inline double GetModCenterSphereOld() const
 	{
 		return FModCenterSphereOld;
 	}
 
+	//#############################################################################
 	inline vector3d GetFromOldCentrToCentr() const
 	{
 		return FromOldCentrToCentr;
 	}
 
+	//#############################################################################
 	inline double GetModFromOldCentrToCentr() const
 	{
 		return ModFromOldCentrToCentr;

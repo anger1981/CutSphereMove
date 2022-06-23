@@ -43,7 +43,7 @@ void myCalculateIntersectionSphereWithCloud::CalcIntersectSphereTraceToPoint(poi
 	//Distance between point in cloud and segment formed by the center of the sphere when it moves
 	double DistancePointTrace = (~(AFromCentrToPoint % GetFromOldCentrToCentr())) / GetModFromOldCentrToCentr();
 
-	// give angle between FromCentrToPoint and FromOldCentrToCentr
+	// give angle between FromCentrToPoint and FromOldCentrToCentr, must be greater than 90 degrees
 	double cos = (AFromCentrToPoint * GetFromOldCentrToCentr()) / (GetModFromOldCentrToCentr() * AModFromCentrToPoint);
 
 	if ( cos <= 0. && AModFromCentrToPoint <= GetModFromOldCentrToCentr())

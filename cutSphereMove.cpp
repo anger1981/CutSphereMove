@@ -1,5 +1,8 @@
 //#define _CRTDBG_MAP_ALLOC
 
+//#pragma comment(linker, "/STACK:160000000")
+//#pragma comment(linker,  "/HEAP:800000000")
+
 #include <string>
 
 #include "mwTPoint3d.hpp"
@@ -12,6 +15,7 @@
 int main(int argc, char* argv[])
 {
 //	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+	int size = sizeof(cadcam::mwTPoint3d<double>);
 
 	//Point cloud reference point at 0, 0, 0
 	cadcam::mwTPoint3d<double> referencePoint( 0., 0., 0.);

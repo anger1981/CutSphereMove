@@ -42,6 +42,9 @@
     <ClCompile Include="myParamsSphereAndSubCloudNear.cpp">
       <Filter>Quellcodedateien</Filter>
     </ClCompile>
+    <ClCompile Include="myRepositoryPointCloud.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CreateSkin.hpp">
@@ -74,5 +77,11 @@
     <ClInclude Include="myParamsSphereAndSubCloudNear.hpp">
       <Filter>Header-Dateien</Filter>
     </ClInclude>
+    <ClInclude Include="myRepositoryPointCloud.hpp">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

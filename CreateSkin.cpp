@@ -1,5 +1,6 @@
 #include "CreateSkin.hpp"
 #include "myMovingIntersectSphere.hpp"
+#include "myRepositoryPointCloud.hpp"
 
 void CreateSkin( const cadcam::mwTPoint3d<double> refPoint, 
 				const unsigned long nx, const unsigned long ny, 
@@ -8,19 +9,19 @@ void CreateSkin( const cadcam::mwTPoint3d<double> refPoint,
 				const double delta, const std::string &skinFileName )
 {
 	//Create Point Cloud
-	myPointCloud * PointCloud = new myPointCloud(refPoint, nx, ny, nz, delta);
+	myRepositoryPointCloud * RepositoryPointCloud = new myRepositoryPointCloud(refPoint, nx, ny, nz, delta);
 
 	//Create MovingIntersectSphere
-	myMovingIntersectSphere * MovingIntersectSphere = new myMovingIntersectSphere(PointCloud, sphereRad, &func, deltaT);
+	myMovingIntersectSphere * MovingIntersectSphere = new myMovingIntersectSphere(RepositoryPointCloud, sphereRad, &func, deltaT);
 
 	//Ñalculation of the movement of the sphere and the intersection of the sphere with the cloud
 	MovingIntersectSphere->MovementIntersectSphere();
 
 	//Writing information about the obtained surface to the previously specified file
-	PointCloud->PrintCloudToFile(skinFileName);
+	RepositoryPointCloud->PrintCloudToFile(skinFileName);
 
 	//Clearing the Heap
-	delete PointCloud;
+	delete RepositoryPointCloud;
 	delete MovingIntersectSphere;
 
 }

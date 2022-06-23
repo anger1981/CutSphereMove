@@ -2,67 +2,54 @@
 #include "myPointCloud.hpp"
 #include <fstream>
 
-myPointCloud::myPointCloud(const point3d & AReferencePoint, int ACntPointX, int ACntPointY, int ACntPointZ, double Adelta)
+void myPointCloud::CreateSubCloud(myPointCoord StartPointCloud, myPointCoord EndPointCloud)
 {
-	FCntPointX = ACntPointX;
-	FCntPointY = ACntPointY;
-	FCntPointZ = ACntPointZ;
-
-	Fdelta = Adelta;
-
-	FReferencePoint = AReferencePoint;
-
-	point3d APoint;
-
-	double i_delta;
-	double j_delta;
-	double k_delta;
-
-	//create point cloud
-	FCloud = new point3d**[FCntPointX];
+	//create sub point cloud
+	FCloud = new point3d**[EndPointCloud.i - StartPointCloud.i];
 
 	//initialization of point cloud
-	for (int i = 0; i < FCntPointX; i++)
+	for (int i = 0; i < EndPointCloud.i - StartPointCloud.i; i++)
 	{
-		i_delta = i * Fdelta;
+		FCloud[i] = new point3d*[EndPointCloud.j - StartPointCloud.j];
 
-		FCloud[i] = new point3d*[FCntPointY];
-
-		for (int j = 0; j < FCntPointY; j++)
+		for (int j = 0; j < EndPointCloud.j - StartPointCloud.j; j++)
 		{
-			j_delta = j * Fdelta;
-
-			FCloud[i][j] = new point3d[FCntPointZ];
-
-			for (int k = 0; k < FCntPointZ; k++)
-			{			
-
-				k_delta = k * Fdelta;
-
-				APoint.x(FReferencePoint.x() + i_delta);
-				APoint.y(FReferencePoint.y() + j_delta);
-				APoint.z(FReferencePoint.z() + k_delta);
-				APoint.visible = false;
-				APoint.deleted = false;
-
-				FCloud[i][j][k] = point3d(APoint);
-			}
+			FCloud[i][j] = new point3d[EndPointCloud.k - StartPointCloud.k];
 		}
 	}
 }
 
-
-myPointCloud::~myPointCloud()
+void myPointCloud::DestroySubCloud(myPointCoord StartPointCloud, myPointCoord EndPointCloud)
 {
-	for (int i = 0; i < FCntPointX; i++)
+	for (int i = 0; i < EndPointCloud.i - StartPointCloud.i; i++)
 	{
-		for (int j = 0; j < FCntPointY; j++)
+		for (int j = 0; j < EndPointCloud.j - StartPointCloud.j; j++)
 		{
 			delete[] FCloud[i][j];
 		}
 		delete[] FCloud[i];
 	}
 	delete FCloud;
+}
+
+myPointCloud::myPointCloud(const point3d & AReferencePoint, int ACntPointX, int ACntPointY, int ACntPointZ, double Adelta)
+{
+	FCntPointX = ACntPointX;
+	FCntPointY = ACntPointY;
+	FCntPointZ = ACntPointZ;
+
+	FMaxPointCoordCloud.i = FCntPointX;
+	FMaxPointCoordCloud.j = FCntPointY;
+	FMaxPointCoordCloud.k = FCntPointZ;
+
+	Fdelta = Adelta;
+
+	FReferencePoint = AReferencePoint;
+}
+
+
+myPointCloud::~myPointCloud()
+{
 }
 
 void myPointCloud::PrintCloudToFile(const std::string AFilename)

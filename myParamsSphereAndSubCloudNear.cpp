@@ -7,7 +7,7 @@ myParamsSphereAndSubCloudNear::myParamsSphereAndSubCloudNear(const double Aspher
 	FSphereRadius = AsphereRad;
     Fdelta_radius = floor(FSphereRadius / Fdelta) + 1;
 
-	FSphereRadiusPlusDelta = FSphereRadius + Fdelta * 0.99;
+	FSphereRadiusPlusDelta = FSphereRadius + Fdelta * 0.99; // Fdelta * 0.99 must be added to prevent the second row of points from falling into the visible layer. 
 	FCenterSphere = { 0., 0., 0. };
 	FCenterSphereOld = { 0., 0., 0. };
 }
