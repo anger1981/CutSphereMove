@@ -12,8 +12,6 @@ myPointCloud::myPointCloud(const point3d & AReferencePoint, int ACntPointX, int 
 
 	FReferencePoint = AReferencePoint;
 
-	point3d APoint;
-
 	double i_delta;
 	double j_delta;
 	double k_delta;
@@ -39,13 +37,12 @@ myPointCloud::myPointCloud(const point3d & AReferencePoint, int ACntPointX, int 
 
 				k_delta = k * Fdelta;
 
-				APoint.x(FReferencePoint.x() + i_delta);
-				APoint.y(FReferencePoint.y() + j_delta);
-				APoint.z(FReferencePoint.z() + k_delta);
-				APoint.visible = false;
-				APoint.deleted = false;
+				FCloud[i][j][k].x(FReferencePoint.x() + i_delta);
+				FCloud[i][j][k].y(FReferencePoint.y() + j_delta);
+				FCloud[i][j][k].z(FReferencePoint.z() + k_delta);
+				FCloud[i][j][k].visible = false;
+				FCloud[i][j][k].deleted = false;
 
-				FCloud[i][j][k] = point3d(APoint);
 			}
 		}
 	}

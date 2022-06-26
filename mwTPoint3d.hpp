@@ -38,7 +38,7 @@ namespace cadcam
 			elems[0] = 0;
 			elems[1] = 0;
 			elems[2] = 0;
-			visible  = true;
+			visible  = false;
 			deleted  = false;
 		};
 
