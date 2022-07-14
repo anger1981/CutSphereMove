@@ -13,6 +13,8 @@ int main(int argc, char* argv[])
 {
 //	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
+	int x = 22 % 5;
+
 	//Point cloud reference point at 0, 0, 0
 	cadcam::mwTPoint3d<double> referencePoint( 0., 0., 0.);
 
